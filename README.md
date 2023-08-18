@@ -80,6 +80,26 @@ $ yarn test --watch
 $ pnpm run test --watch
 ```
 
+## Setting Up Login Credentials
+
+To use the login functionality, you need to set up the username and password which the system will use to authenticate users. Follow the steps below:
+
+1. **Environment Variables**: For security purposes, it's recommended to store sensitive data such as usernames and passwords in environment variables.
+   
+   - Create a `.env` file in the root of your project (if it doesn't already exist).
+   - Add the username and password in the `.env` file as shown below:
+     ```
+     REACT_APP_ADMIN_USERNAME=<your_username>
+     REACT_APP_ADMIN_PASSWORD=<your_password>
+     ```
+     
+2. **Updating the Login Code**: In your `login.tsx` file, which contains the `LoginForm` component, the `handleSubmit` function will handle the authentication. Make sure to compare the entered credentials with the ones from the environment variables to authenticate users. Modify the `handleSubmit` function accordingly.
+
+3. **Protecting Sensitive Data**: Ensure your `.env` file is listed in your `.gitignore` so that it's not committed to your version control. This protects your sensitive data.
+
+4. **Accessing the Login Route**: Navigate to the route that renders the `LoginForm` component in your browser. Here, you can input the credentials set in the `.env` file to test the login functionality.
+
+
 ## Community
 
 Here's a curated list of websites using this framework. Please feel free to add your own:
