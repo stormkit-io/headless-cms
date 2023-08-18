@@ -1,36 +1,88 @@
+import React from "react";
 import { createTheme } from "@mui/material/styles";
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from "react-router-dom";
+import { LinkProps } from "@mui/material/Link";
 
-const theme = createTheme({
+const LinkBehavior = React.forwardRef<
+  HTMLAnchorElement,
+  Omit<RouterLinkProps, "to"> & { href: RouterLinkProps["to"] }
+>((props, ref) => {
+  const { href, ...other } = props;
+  // Map href (MUI) -> to (react-router)
+  return <RouterLink ref={ref} to={href} {...other} />;
+});
+
+export default createTheme({
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      } as LinkProps,
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        arrow: {
+          color: "#070415",
+        },
+        popper: {
+          padding: 4,
+        },
+        tooltip: {
+          color: "white",
+          backgroundColor: "#070415",
+          fontSize: 14,
+        },
+      },
+    },
+    MuiAlert: {
+      styleOverrides: {
+        standardWarning: {
+          backgroundColor: "#b75c22",
+          color: "white",
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        colorWarning: {
+          backgroundColor: "#b75c22",
+          color: "white",
+        },
+      },
+    },
+  },
   palette: {
+    mode: "dark",
     primary: {
-      main: "#000000",
-      light: "#14141b",
-      dark: "#0f0f0f",
+      main: "#0F092B",
+      light: "#e7e5ee",
+      contrastText: "#e7e5ee",
     },
     secondary: {
-      main: "#d135ef",
-      light: "#c895cd",
-      dark: "#491f72",
+      main: "#78193B",
+      light: "#e7e5ee",
+      dark: "#f6005c",
+      contrastText: "#e7e5ee",
     },
-    error: {
-      main: "#c5394f",
-      light: "#d8657d",
-      dark: "#8c2b44",
+    text: {
+      primary: "#a4a4a4",
     },
-    warning: {
-      main: "#ffd54f", // Pastel yellow
-      light: "#ffee58",
-      dark: "#fbc02d",
+    background: {
+      default: "#0F092B",
+      paper: "#070415",
+    },
+    container: {
+      main: "#1F1C3B",
     },
     info: {
-      main: "#f0f0f0",
-      light: "#c9c9c9",
-      dark: "#4f4f4f",
+      main: "#a4a4a4",
+      contrastText: "#B7AE22",
     },
-    success: {
-      main: "#81c784", // Pastel green
-      light: "#a5d6a7",
-      dark: "#4caf50",
+    warning: {
+      main: "#ffffff",
     },
   },
   breakpoints: {
@@ -43,5 +95,3 @@ const theme = createTheme({
     },
   },
 });
-
-export default theme;
