@@ -1,7 +1,7 @@
 import { Routes, Route, RouteProps } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
-import theme from "./mui-theme"
+import theme from "./mui-theme";
 
 interface Props {
   routes: RouteProps[];
