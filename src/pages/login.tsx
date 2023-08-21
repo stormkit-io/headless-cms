@@ -1,6 +1,6 @@
 import React, { type FormEvent, useState } from "react";
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {
   Avatar,
   Box,
@@ -36,7 +36,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Box>
       <Box
         sx={{
           marginTop: 8,
@@ -53,17 +53,26 @@ const LoginForm = () => {
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
-            margin="normal"
+            type="text"
+            variant="filled"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            autoComplete="username"
             autoFocus
           />
           <TextField
+            variant="filled"
             margin="normal"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             required
             fullWidth
             name="password"
@@ -90,15 +99,10 @@ const LoginForm = () => {
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
           </Grid>
         </Box>
       </Box>
-    </form>
+    </Box>
   );
 };
 
