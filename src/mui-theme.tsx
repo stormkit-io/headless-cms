@@ -22,6 +22,18 @@ export default createTheme({
         component: LinkBehavior,
       } as LinkProps,
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: 14,
+          color: "white",
+          opacity: 0.4,
+          "&.Mui-focused": {
+            color: "white",
+          },
+        },
+      },
+    },
     MuiTooltip: {
       styleOverrides: {
         arrow: {
@@ -73,9 +85,6 @@ export default createTheme({
     background: {
       default: "#0F092B",
       paper: "#070415",
-    },
-    container: {
-      main: "#1F1C3B",
     },
     info: {
       main: "#a4a4a4",
