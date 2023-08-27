@@ -4,4 +4,4 @@
 // Check import.meta.glob provided by Vite to scan folders dynamically
 // and build the routes to be prerendered.
 
-export default ["/", "/my-page", "/my-other-page"];
+export default ['/', '/my-page', '/my-other-page']

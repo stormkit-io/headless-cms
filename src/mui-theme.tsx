@@ -1,19 +1,19 @@
-import React from "react";
-import { createTheme } from "@mui/material/styles";
+import React from 'react'
+import { createTheme } from '@mui/material/styles'
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
-} from "react-router-dom";
-import { LinkProps } from "@mui/material/Link";
+} from 'react-router-dom'
+import { LinkProps } from '@mui/material/Link'
 
 const LinkBehavior = React.forwardRef<
   HTMLAnchorElement,
-  Omit<RouterLinkProps, "to"> & { href: RouterLinkProps["to"] }
+  Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
-  const { href, ...other } = props;
+  const { href, ...other } = props
   // Map href (MUI) -> to (react-router)
-  return <RouterLink ref={ref} to={href} {...other} />;
-});
+  return <RouterLink ref={ref} to={href} {...other} />
+})
 
 export default createTheme({
   components: {
@@ -26,10 +26,10 @@ export default createTheme({
       styleOverrides: {
         root: {
           fontSize: 14,
-          color: "white",
+          color: 'white',
           opacity: 0.4,
-          "&.Mui-focused": {
-            color: "white",
+          '&.Mui-focused': {
+            color: 'white',
           },
         },
       },
@@ -37,14 +37,14 @@ export default createTheme({
     MuiTooltip: {
       styleOverrides: {
         arrow: {
-          color: "#070415",
+          color: '#070415',
         },
         popper: {
           padding: 4,
         },
         tooltip: {
-          color: "white",
-          backgroundColor: "#070415",
+          color: 'white',
+          backgroundColor: '#070415',
           fontSize: 14,
         },
       },
@@ -52,46 +52,46 @@ export default createTheme({
     MuiAlert: {
       styleOverrides: {
         standardWarning: {
-          backgroundColor: "#b75c22",
-          color: "white",
+          backgroundColor: '#b75c22',
+          color: 'white',
         },
       },
     },
     MuiChip: {
       styleOverrides: {
         colorWarning: {
-          backgroundColor: "#b75c22",
-          color: "white",
+          backgroundColor: '#b75c22',
+          color: 'white',
         },
       },
     },
   },
   palette: {
-    mode: "dark",
+    mode: 'dark',
     primary: {
-      main: "#0F092B",
-      light: "#e7e5ee",
-      contrastText: "#e7e5ee",
+      main: '#0F092B',
+      light: '#e7e5ee',
+      contrastText: '#e7e5ee',
     },
     secondary: {
-      main: "#78193B",
-      light: "#e7e5ee",
-      dark: "#f6005c",
-      contrastText: "#e7e5ee",
+      main: '#78193B',
+      light: '#e7e5ee',
+      dark: '#f6005c',
+      contrastText: '#e7e5ee',
     },
     text: {
-      primary: "#a4a4a4",
+      primary: '#a4a4a4',
     },
     background: {
-      default: "#0F092B",
-      paper: "#070415",
+      default: '#0F092B',
+      paper: '#070415',
     },
     info: {
-      main: "#a4a4a4",
-      contrastText: "#B7AE22",
+      main: '#a4a4a4',
+      contrastText: '#B7AE22',
     },
     warning: {
-      main: "#ffffff",
+      main: '#ffffff',
     },
   },
   breakpoints: {
@@ -103,4 +103,4 @@ export default createTheme({
       xl: 1368,
     },
   },
-});
+})

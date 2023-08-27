@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import reactLogo from "~/assets/react.svg";
-import Context from "~/context";
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import reactLogo from '~/assets/react.svg'
+import Context from '~/context'
 
 // If a route exports `fetchData` method, it will be called
 // on the server side. The returned optional `head` property will be
@@ -13,13 +13,13 @@ export const fetchData: FetchDataFunc = (match) => {
       resolve({
         head: { title: match.name },
         context: { serverTime: Date.now() },
-      });
-    }, 1000);
-  });
-};
+      })
+    }, 1000)
+  })
+}
 
 const Home: React.FC = () => {
-  const context = useContext(Context);
+  const context = useContext(Context)
 
   return (
     <div className="App">
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
           <>
             <p>
               This page is server side rendered. <br />
-              Check the source code and search for the{" "}
+              Check the source code and search for the{' '}
               <code>window.CONTEXT</code> object.
             </p>
             <p>
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
         )}
       </div>
       <p className="powered-by">
-        Template by{" "}
+        Template by{' '}
         <a
           href="https://www.stormkit.io/"
           target="_blank"
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
         </a>
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

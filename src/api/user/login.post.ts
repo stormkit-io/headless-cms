@@ -1,33 +1,33 @@
-import http from "http";
-import { readBody } from "~/lib/read-body";
+import http from 'http'
+import { readBody } from '~/lib/read-body'
 
 interface LoginRequest {
-  username: string;
-  password: string;
+  username: string
+  password: string
 }
 
 export default async (req: http.IncomingMessage, res: http.ServerResponse) => {
-  let body: LoginRequest;
+  let body: LoginRequest
   try {
-    body = await readBody<LoginRequest>(req);
+    body = await readBody<LoginRequest>(req)
   } catch (e: any) {
     res.write(
-      JSON.stringify({ error: e?.message || "Unable to parse request body." })
-    );
-    res.end();
-    return;
+      JSON.stringify({ error: e?.message || 'Unable to parse request body.' }),
+    )
+    res.end()
+    return
   }
 
   if (
     body.username === process.env.ADMIN_USERNAME &&
     body.password === process.env.ADMIN_PASSWORD
   ) {
-    res.write(JSON.stringify({ success: true }));
+    res.write(JSON.stringify({ success: true }))
   } else {
-    res.statusCode = 401;
+    res.statusCode = 401
     res.write(
-      JSON.stringify({ success: false, message: "Invalid credentials" })
-    );
+      JSON.stringify({ success: false, message: 'Invalid credentials' }),
+    )
   }
-  res.end();
-};
+  res.end()
+}

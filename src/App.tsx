@@ -1,10 +1,10 @@
-import { Routes, Route, RouteProps } from "react-router-dom";
-import CssBaseline from "@mui/material/CssBaseline";
-import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
-import theme from "./mui-theme";
+import { Routes, Route, RouteProps } from 'react-router-dom'
+import CssBaseline from '@mui/material/CssBaseline'
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
+import theme from './mui-theme'
 
 interface Props {
-  routes: RouteProps[];
+  routes: RouteProps[]
 }
 
 const App: React.FC<Props> = ({ routes }) => {
@@ -19,7 +19,7 @@ const App: React.FC<Props> = ({ routes }) => {
         </Routes>
       </ThemeProvider>
     </StyledEngineProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

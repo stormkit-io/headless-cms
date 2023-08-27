@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import reactLogo from "~/assets/react.svg";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import reactLogo from '~/assets/react.svg'
 
 const handleButtonClick = () => {
-  return fetch("/api/subscribe", {
-    method: "POST",
+  return fetch('/api/subscribe', {
+    method: 'POST',
     body: JSON.stringify({ time: Date.now() }),
-  });
-};
+  })
+}
 
 const Home: React.FC = () => {
-  const [payload, setPayload] = useState();
+  const [payload, setPayload] = useState()
 
   return (
     <div className="App">
@@ -32,13 +32,13 @@ const Home: React.FC = () => {
           <button
             onClick={() =>
               handleButtonClick().then(async (res) => {
-                const data = await res.json();
-                setPayload(data);
+                const data = await res.json()
+                setPayload(data)
               })
             }
           >
             Click here
-          </button>{" "}
+          </button>{' '}
           to make a request to the API.
         </p>
         {payload && (
@@ -47,12 +47,12 @@ const Home: React.FC = () => {
           </p>
         )}
         <p>
-          Checkout template from{" "}
+          Checkout template from{' '}
           <a href="https://github.com/stormkit-io/monorepo-template">GitHub</a>
         </p>
       </div>
       <p className="powered-by">
-        Template by{" "}
+        Template by{' '}
         <a
           href="https://www.stormkit.io/"
           target="_blank"
@@ -62,7 +62,7 @@ const Home: React.FC = () => {
         </a>
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
