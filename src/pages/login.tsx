@@ -1,6 +1,6 @@
-import React, { type FormEvent, useState } from "react";
+import React, { type FormEvent, useState } from 'react'
 
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import {
   Avatar,
   Box,
@@ -11,41 +11,41 @@ import {
   Link,
   TextField,
   Typography,
-} from "@mui/material";
+} from '@mui/material'
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const response = await fetch("/api/user/login", {
-      method: "POST",
+    const response = await fetch('/api/user/login', {
+      method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-    });
+    })
 
     if (response.ok) {
-      console.log("successful");
+      console.log('successful')
     } else {
-      console.log("error");
+      console.log('error')
     }
-  };
+  }
 
   return (
     <Box>
       <Box
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -57,7 +57,7 @@ const LoginForm = () => {
             variant="filled"
             value={username}
             onChange={(e) => {
-              setUsername(e.target.value);
+              setUsername(e.target.value)
             }}
             required
             fullWidth
@@ -71,7 +71,7 @@ const LoginForm = () => {
             margin="normal"
             value={password}
             onChange={(e) => {
-              setPassword(e.target.value);
+              setPassword(e.target.value)
             }}
             required
             fullWidth
@@ -103,7 +103,7 @@ const LoginForm = () => {
         </Box>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

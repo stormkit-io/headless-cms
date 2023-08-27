@@ -1,44 +1,44 @@
-import { StaticRouter } from "react-router-dom/server";
-import { renderToString } from "react-dom/server";
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import serverless from "@stormkit/serverless";
-import createRoutes from "./routes";
-import Context from "./context";
-import App from "./App";
+import { StaticRouter } from 'react-router-dom/server'
+import { renderToString } from 'react-dom/server'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import serverless from '@stormkit/serverless'
+import createRoutes from './routes'
+import Context from './context'
+import App from './App'
 
 interface RenderReturn {
-  status: number;
-  content: string;
-  head: string;
+  status: number
+  content: string
+  head: string
 }
 
-export type RenderFunction = (url: string) => Promise<RenderReturn>;
+export type RenderFunction = (url: string) => Promise<RenderReturn>
 
 const defaultSEO: SEO = {
-  title: "Vite + React (SSR, SSG, SPA)",
-  description: "Mono repo template for apps needing ssr, ssg and/or spa.",
+  title: 'Vite + React (SSR, SSG, SPA)',
+  description: 'Mono repo template for apps needing ssr, ssg and/or spa.',
   domain: {
-    name: "",
-    url: "",
+    name: '',
+    url: '',
   },
   twitter: {
-    card: "summary_large_image",
-    creator: "@savasvedova",
+    card: 'summary_large_image',
+    creator: '@savasvedova',
   },
-};
+}
 
 export const render: RenderFunction = async (url) => {
-  const { routes, head, context } = await createRoutes(url);
+  const { routes, head, context } = await createRoutes(url)
   const tags = {
     ...defaultSEO,
     ...head,
-  };
+  }
 
   // Prefix the title with the domain.name property.
   tags.title =
-    `${tags.domain?.name ? tags.domain.name + " | " : ""}` + tags.title;
+    `${tags.domain?.name ? tags.domain.name + ' | ' : ''}` + tags.title
 
   return {
     status: 200,
@@ -48,11 +48,11 @@ export const render: RenderFunction = async (url) => {
           <StaticRouter location={url}>
             <App routes={routes} />
           </StaticRouter>
-        </Context.Provider>
+        </Context.Provider>,
       ) +
       (context
         ? `<script>window.CONTEXT = ${JSON.stringify(context)}</script>`
-        : ""),
+        : ''),
     head: [
       `<title>${tags.title}</title>`,
       `<meta charset="utf-8" />`,
@@ -68,27 +68,27 @@ export const render: RenderFunction = async (url) => {
       `<meta name="twitter:description" content="${tags.description}" />`,
       `<link rel="icon" type="image/svg+xml" href="/logo.svg" />`,
     ]
-      .join("\n")
+      .join('\n')
       .trim(),
-  };
-};
+  }
+}
 
 // This handler add support for Stormkit environment. This is
 // the entry point of the serverless application.
 export const handler = serverless(async (req: any, res: any) => {
   // We are in assets folder
-  const dir = path.dirname(fileURLToPath(import.meta.url));
-  const html = fs.readFileSync(path.join(dir, "./index.html"), "utf-8");
+  const dir = path.dirname(fileURLToPath(import.meta.url))
+  const html = fs.readFileSync(path.join(dir, './index.html'), 'utf-8')
 
   const { status, content, head } = await render(
-    req.url?.split(/\?#/)[0] || "/"
-  );
+    req.url?.split(/\?#/)[0] || '/',
+  )
 
-  res.writeHead(status, "OK", { "Content-Type": "text/html; charset=utf-8" });
+  res.writeHead(status, 'OK', { 'Content-Type': 'text/html; charset=utf-8' })
   res.write(
     html
-      .replace("</head>", `${head}</head>`)
-      .replace(`<div id="root"></div>`, `<div id="root">${content}</div>`)
-  );
-  res.end();
-});
+      .replace('</head>', `${head}</head>`)
+      .replace(`<div id="root"></div>`, `<div id="root">${content}</div>`),
+  )
+  res.end()
+})

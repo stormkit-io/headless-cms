@@ -1,1 +1,1 @@
-export { default } from "./Async";
+export { default } from './Async'
